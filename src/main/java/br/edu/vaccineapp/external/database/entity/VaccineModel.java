@@ -2,6 +2,7 @@ package br.edu.vaccineapp.external.database.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(schema = "VACCINEORG", name = "VACCINE")
@@ -21,6 +22,12 @@ public class VaccineModel {
 
     @Column(name = "date_create")
     private Date dateCreate;
+
+    @OneToMany(mappedBy = "vaccine")
+    private List<UserVaccineCampaignModel> userCampaigns;
+
+    @OneToMany(mappedBy="campaign")
+    private List<VaccineCampaignModel> vaccineCampaigns;
 
     public Long getId() {
         return id;
@@ -52,5 +59,21 @@ public class VaccineModel {
 
     public void setDateCreate(Date dateCreate) {
         this.dateCreate = dateCreate;
+    }
+
+    public List<UserVaccineCampaignModel> getUserCampaigns() {
+        return userCampaigns;
+    }
+
+    public void setUserCampaigns(List<UserVaccineCampaignModel> userCampaigns) {
+        this.userCampaigns = userCampaigns;
+    }
+
+    public List<VaccineCampaignModel> getVaccineCampaigns() {
+        return vaccineCampaigns;
+    }
+
+    public void setVaccineCampaigns(List<VaccineCampaignModel> vaccineCampaigns) {
+        this.vaccineCampaigns = vaccineCampaigns;
     }
 }

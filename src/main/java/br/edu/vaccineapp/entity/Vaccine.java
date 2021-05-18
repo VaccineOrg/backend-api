@@ -9,7 +9,7 @@ public class Vaccine {
     private String name;
     private String description;
     private Date dateCreate;
-    private List<UserVaccineCampaign> userCampaigns;
+    private List<UserCampaign> userCampaigns;
     private List<VaccineCampaign> vaccineCampaigns;
 
     public Long getId() {
@@ -44,11 +44,11 @@ public class Vaccine {
         this.dateCreate = dateCreate;
     }
 
-    public List<UserVaccineCampaign> getUserCampaigns() {
+    public List<UserCampaign> getUserCampaigns() {
         return userCampaigns;
     }
 
-    public void setUserCampaigns(List<UserVaccineCampaign> userCampaigns) {
+    public void setUserCampaigns(List<UserCampaign> userCampaigns) {
         this.userCampaigns = userCampaigns;
     }
 

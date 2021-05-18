@@ -29,7 +29,7 @@ public class UserVaccineCampaignModel {
     private VaccineModel vaccine;
 
     @Column(name = "date_create")
-    private Date date_create;
+    private Date dateCreate;
 
 
     public Long getId() {
@@ -64,11 +64,11 @@ public class UserVaccineCampaignModel {
         this.vaccine = vaccine;
     }
 
-    public Date getDate_create() {
-        return date_create;
+    public Date getDateCreate() {
+        return dateCreate;
     }
 
-    public void setDate_create(Date date_create) {
-        this.date_create = date_create;
+    public void setDateCreate(Date dateCreate) {
+        this.dateCreate = dateCreate;
     }
 }

@@ -21,7 +21,7 @@ public class UserModel {
     private String employeeId;
 
     @Column(name = "date_create")
-    private Date date_create;
+    private Date dateCreate;
 
     @OneToMany(mappedBy = "user")
     private List<UserVaccineCampaignModel> userCampaigns;
@@ -50,12 +50,12 @@ public class UserModel {
         this.employeeId = employeeId;
     }
 
-    public Date getDate_create() {
-        return date_create;
+    public Date getDateCreate() {
+        return dateCreate;
     }
 
-    public void setDate_create(Date date_create) {
-        this.date_create = date_create;
+    public void setDateCreate(Date dateCreate) {
+        this.dateCreate = dateCreate;
     }
 
     public List<UserVaccineCampaignModel> getUserCampaigns() {

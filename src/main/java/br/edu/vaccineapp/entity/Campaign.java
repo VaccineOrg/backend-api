@@ -12,7 +12,7 @@ public class Campaign {
     private String dateCreate;
     private String dateBegin;
     private String dateEnd;
-    private List<UserVaccineCampaign> userCampaigns;
+    private List<UserCampaign> userCampaigns;
     private List<VaccineCampaign> vaccineCampaigns;
 
     public Long getId() {
@@ -63,11 +63,11 @@ public class Campaign {
         this.dateEnd = dateEnd;
     }
 
-    public List<UserVaccineCampaign> getUserCampaigns() {
+    public List<UserCampaign> getUserCampaigns() {
         return userCampaigns;
     }
 
-    public void setUserCampaigns(List<UserVaccineCampaign> userCampaigns) {
+    public void setUserCampaigns(List<UserCampaign> userCampaigns) {
         this.userCampaigns = userCampaigns;
     }
 

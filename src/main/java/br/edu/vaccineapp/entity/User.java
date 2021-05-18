@@ -8,8 +8,8 @@ public class User {
     private Long id;
     private String name;
     private String employeeId;
-    private Date date_create;
-    private List<UserVaccineCampaign> userCampaigns;
+    private Date dateCreate;
+    private List<UserCampaign> userCampaigns;
 
     public Long getId() {
         return id;
@@ -35,19 +35,19 @@ public class User {
         this.employeeId = employeeId;
     }
 
-    public Date getDate_create() {
-        return date_create;
+    public Date getDateCreate() {
+        return dateCreate;
     }
 
-    public void setDate_create(Date date_create) {
-        this.date_create = date_create;
+    public void setDateCreate(Date dateCreate) {
+        this.dateCreate = dateCreate;
     }
 
-    public List<UserVaccineCampaign> getUserCampaigns() {
+    public List<UserCampaign> getUserCampaigns() {
         return userCampaigns;
     }
 
-    public void setUserCampaigns(List<UserVaccineCampaign> userCampaigns) {
+    public void setUserCampaigns(List<UserCampaign> userCampaigns) {
         this.userCampaigns = userCampaigns;
     }
 }

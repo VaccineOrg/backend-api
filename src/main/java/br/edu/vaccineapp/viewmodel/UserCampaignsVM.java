@@ -1,4 +1,4 @@
-package br.edu.vaccineapp.viewmodel.adapter;
+package br.edu.vaccineapp.viewmodel;
 
 import java.util.List;
 

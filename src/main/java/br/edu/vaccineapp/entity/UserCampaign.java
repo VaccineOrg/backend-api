@@ -1,24 +1,12 @@
 package br.edu.vaccineapp.entity;
 
-import br.edu.vaccineapp.external.database.entity.CampaignModel;
-import br.edu.vaccineapp.external.database.entity.VaccineModel;
-
 import java.util.Date;
 
-public class VaccineCampaign {
+public class UserCampaign {
 
-    private Long numberVaccines;
     private Campaign campaign;
     private Vaccine vaccine;
     private Date dateCreate;
-
-    public Long getNumberVaccines() {
-        return numberVaccines;
-    }
-
-    public void setNumberVaccines(Long numberVaccines) {
-        this.numberVaccines = numberVaccines;
-    }
 
     public Campaign getCampaign() {
         return campaign;

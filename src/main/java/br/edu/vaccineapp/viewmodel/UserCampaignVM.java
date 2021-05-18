@@ -1,4 +1,4 @@
-package br.edu.vaccineapp.viewmodel.adapter;
+package br.edu.vaccineapp.viewmodel;
 
 import br.edu.vaccineapp.entity.enums.Status;
 

@@ -1,12 +1,14 @@
 package br.edu.vaccineapp.entity;
 
+import br.edu.vaccineapp.entity.enums.Status;
+
 import java.util.List;
 
 public class Campaign {
 
     private Long id;
     private String name;
-    private String status;
+    private Status status;
     private String dateCreate;
     private String dateBegin;
     private String dateEnd;
@@ -29,11 +31,11 @@ public class Campaign {
         this.name = name;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

@@ -4,7 +4,6 @@ import br.edu.vaccineapp.entity.User;
 import br.edu.vaccineapp.entity.UserCampaign;
 import br.edu.vaccineapp.usecase.read.GetUserByName;
 import br.edu.vaccineapp.usecase.read.GetUserCampaigns;
-import br.edu.vaccineapp.viewmodel.UserCampaignVM;
 import br.edu.vaccineapp.viewmodel.UserCampaignsVM;
 import br.edu.vaccineapp.viewmodel.adapter.UserCampaignsVMAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +38,4 @@ public class UserCampaignsController {
             return ResponseEntity.badRequest().body(err.getMessage());
         }
     }
-
 }

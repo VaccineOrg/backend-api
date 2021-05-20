@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(schema = "VACCINEMODEL", name = "USER_VACCINE_CAMPAIGN")
+@Table(schema = "VACCINEORG", name = "USER_VACCINE_CAMPAIGN")
 public class UserVaccineCampaignModel {
 
     @Id
@@ -14,18 +14,15 @@ public class UserVaccineCampaignModel {
     private Long id;
 
     @ManyToOne
-    @MapsId("userId")
-    @JoinColumn(name = "user_id_pk")
+    @JoinColumn(name = "user_id")
     private UserModel user;
 
     @ManyToOne
-    @MapsId("campaignId")
-    @JoinColumn(name = "campaign_id_pk")
+    @JoinColumn(name = "campaign_id")
     private CampaignModel campaign;
 
     @ManyToOne
-    @MapsId("vaccineId")
-    @JoinColumn(name = "vaccine_id_pk")
+    @JoinColumn(name = "vaccine_id")
     private VaccineModel vaccine;
 
     @Column(name = "date_create")

@@ -4,6 +4,6 @@ import br.edu.vaccineapp.entity.User;
 
 public interface GetUserByNameInDataBase {
 
-    User execute(String name);
+    User execute(String userName);
 
 }

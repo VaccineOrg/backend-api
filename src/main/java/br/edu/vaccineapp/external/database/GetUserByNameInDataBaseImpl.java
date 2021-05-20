@@ -15,8 +15,8 @@ public class GetUserByNameInDataBaseImpl implements GetUserByNameInDataBase {
     private UserRepository userRepository;
 
     @Override
-    public User execute(String name) {
-        UserModel user = userRepository.findUserByName(name);
+    public User execute(String userName) {
+        UserModel user = userRepository.findByUserName(userName);
         return UserModelAdapter.modelToEntity(user);
     }
 }

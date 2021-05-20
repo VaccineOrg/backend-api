@@ -25,11 +25,11 @@ public class UserCampaignsController {
     private GetUserCampaigns getUserCampaigns;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/{name}/campaigns")
+    @GetMapping("/{userName}/campaigns")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity getUserCampaignsByUserName(@PathVariable final String name){
+    public ResponseEntity getUserCampaignsByUserName(@PathVariable final String userName){
         try{
-            final User user = getUserByName.execute(name);
+            final User user = getUserByName.execute(userName);
             final List<UserCampaign> userCampaignList = getUserCampaigns.execute(user);
             UserCampaignsVM userCampaignsVM = new UserCampaignsVM();
             userCampaignsVM.setUserCampaigns(UserCampaignsVMAdapter.entityToViewModel(user, userCampaignList));

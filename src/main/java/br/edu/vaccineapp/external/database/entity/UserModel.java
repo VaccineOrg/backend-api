@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(schema = "VACCINEMODEL", name = "USERS")
+@Table(schema = "VACCINEORG", name = "USERS")
 public class UserModel {
 
     @Id
@@ -15,7 +15,7 @@ public class UserModel {
     private Long id;
 
     @Column(name = "user_name")
-    private String name;
+    private String userName;
 
     @Column(name = "employee_id")
     private String employeeId;
@@ -34,12 +34,12 @@ public class UserModel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmployeeId() {

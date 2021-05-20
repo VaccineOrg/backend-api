@@ -11,8 +11,8 @@ public class GetUserByName {
     @Autowired
     private GetUserByNameInDataBaseImpl getUserByNameInDataBaseImpl;
 
-    public User execute(final String name) {
-        return getUserByNameInDataBaseImpl.execute(name);
+    public User execute(final String userName) {
+        return getUserByNameInDataBaseImpl.execute(userName);
     }
 
 }

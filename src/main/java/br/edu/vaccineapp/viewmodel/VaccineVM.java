@@ -1,14 +1,10 @@
-package br.edu.vaccineapp.entity;
+package br.edu.vaccineapp.viewmodel;
 
-import java.util.Date;
-import java.util.List;
-
-public class Vaccine {
+public class VaccineVM {
 
     private Long id;
     private String name;
     private String description;
-    private Date dateCreate;
 
     public Long getId() {
         return id;
@@ -33,13 +29,4 @@ public class Vaccine {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Date getDateCreate() {
-        return dateCreate;
-    }
-
-    public void setDateCreate(Date dateCreate) {
-        this.dateCreate = dateCreate;
-    }
-
 }

@@ -5,6 +5,8 @@ import br.edu.vaccineapp.usecase.creation.CreateVaccine;
 import br.edu.vaccineapp.usecase.read.GetAllVaccines;
 import br.edu.vaccineapp.viewmodel.VaccineVM;
 import br.edu.vaccineapp.viewmodel.adapter.VaccineVMAdapter;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +18,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/v1/vaccine", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(value = "Vaccine Application API")
+@CrossOrigin(origins = "http://localhost:3000")
 public class VaccineController {
 
     @Autowired
@@ -24,8 +28,8 @@ public class VaccineController {
     @Autowired
     private CreateVaccine createVaccine;
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
+    @ApiOperation(value = "Return all vaccines in data base")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<VaccineVM>> getAllVaccines(@RequestHeader("user-profile") final String userProfile) {
         try {
@@ -40,8 +44,8 @@ public class VaccineController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
+    @ApiOperation(value = "Create vaccine in data base")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<VaccineVM> createVaccine (@RequestHeader("user-profile") final String userProfile, @RequestBody final VaccineVM vaccineVM) {
         try{

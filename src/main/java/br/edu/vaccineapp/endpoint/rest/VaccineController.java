@@ -3,6 +3,8 @@ package br.edu.vaccineapp.endpoint.rest;
 import br.edu.vaccineapp.entity.Vaccine;
 import br.edu.vaccineapp.usecase.creation.CreateVaccine;
 import br.edu.vaccineapp.usecase.read.GetAllVaccines;
+import br.edu.vaccineapp.usecase.read.GetVaccineById;
+import br.edu.vaccineapp.usecase.update.UpdateVaccine;
 import br.edu.vaccineapp.viewmodel.VaccineVM;
 import br.edu.vaccineapp.viewmodel.adapter.VaccineVMAdapter;
 import io.swagger.annotations.Api;
@@ -27,6 +29,12 @@ public class VaccineController {
 
     @Autowired
     private CreateVaccine createVaccine;
+
+    @Autowired
+    private GetVaccineById getVaccineById;
+
+    @Autowired
+    private UpdateVaccine updateVaccine;
 
     @GetMapping
     @ApiOperation(value = "Return all vaccines in data base")
@@ -56,4 +64,22 @@ public class VaccineController {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(vaccineVM);
         }
     }
+
+    @PutMapping("/{id}")
+    @ApiOperation(value = "Update vaccine in data base")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<VaccineVM> updateVaccine(@RequestHeader("user-profile") final String userProfile, @RequestBody final VaccineVM vaccineVM, @PathVariable final Long id){
+        try{
+            final Vaccine vaccine = getVaccineById.execute(id);
+            vaccine.setName(vaccineVM.getName());
+            vaccine.setDescription(vaccineVM.getDescription());
+
+            final Vaccine vaccineAux = updateVaccine.execute(vaccine, userProfile);
+            final VaccineVM result = VaccineVMAdapter.entityToViewModel(vaccineAux);
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch (Exception err) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(vaccineVM);
+        }
+    }
+
 }

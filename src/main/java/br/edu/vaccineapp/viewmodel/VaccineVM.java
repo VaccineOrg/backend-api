@@ -5,6 +5,7 @@ public class VaccineVM {
     private Long id;
     private String name;
     private String description;
+    private boolean ableToDelete;
 
     public Long getId() {
         return id;
@@ -28,5 +29,13 @@ public class VaccineVM {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isAbleToDelete() {
+        return ableToDelete;
+    }
+
+    public void setAbleToDelete(boolean ableToDelete) {
+        this.ableToDelete = ableToDelete;
     }
 }

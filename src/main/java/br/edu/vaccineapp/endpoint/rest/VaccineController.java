@@ -6,6 +6,7 @@ import br.edu.vaccineapp.usecase.delete.DeleteVaccine;
 import br.edu.vaccineapp.usecase.read.GetAllVaccines;
 import br.edu.vaccineapp.usecase.read.GetVaccineById;
 import br.edu.vaccineapp.usecase.update.UpdateVaccine;
+import br.edu.vaccineapp.usecase.validation.ValidateDeleteVaccine;
 import br.edu.vaccineapp.viewmodel.VaccineVM;
 import br.edu.vaccineapp.viewmodel.adapter.VaccineVMAdapter;
 import io.swagger.annotations.Api;
@@ -40,6 +41,9 @@ public class VaccineController {
     @Autowired
     private DeleteVaccine deleteVaccine;
 
+    @Autowired
+    private ValidateDeleteVaccine validateDeleteVaccine;
+
     @GetMapping
     @ApiOperation(value = "Return all vaccines in data base")
     @ResponseStatus(HttpStatus.OK)
@@ -48,7 +52,13 @@ public class VaccineController {
             final List<Vaccine> vaccineList = getAllVaccines.execute(userProfile);
             final List<VaccineVM> vaccineVMList = new ArrayList<>();
             for (Vaccine item : vaccineList) {
-                vaccineVMList.add(VaccineVMAdapter.entityToViewModel(item));
+                VaccineVM vaccineVM = VaccineVMAdapter.entityToViewModel(item);
+                if(validateDeleteVaccine.execute(item)){
+                    vaccineVM.setAbleToDelete(true);
+                }else{
+                    vaccineVM.setAbleToDelete(false);
+                }
+                vaccineVMList.add(vaccineVM);
             }
             return ResponseEntity.status(HttpStatus.OK).body(vaccineVMList);
         }catch (Exception err) {
@@ -100,5 +110,4 @@ public class VaccineController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
     }
-
 }

@@ -12,7 +12,6 @@ public class Campaign {
     private String dateCreate;
     private String dateBegin;
     private String dateEnd;
-    private List<UserCampaign> userCampaigns;
     private List<VaccineCampaign> vaccineCampaigns;
 
     public Long getId() {
@@ -61,14 +60,6 @@ public class Campaign {
 
     public void setDateEnd(String dateEnd) {
         this.dateEnd = dateEnd;
-    }
-
-    public List<UserCampaign> getUserCampaigns() {
-        return userCampaigns;
-    }
-
-    public void setUserCampaigns(List<UserCampaign> userCampaigns) {
-        this.userCampaigns = userCampaigns;
     }
 
     public List<VaccineCampaign> getVaccineCampaigns() {

@@ -1,8 +1,5 @@
 package br.edu.vaccineapp.entity;
 
-import br.edu.vaccineapp.external.database.entity.CampaignModel;
-import br.edu.vaccineapp.external.database.entity.VaccineModel;
-
 import java.util.Date;
 
 public class VaccineCampaign {

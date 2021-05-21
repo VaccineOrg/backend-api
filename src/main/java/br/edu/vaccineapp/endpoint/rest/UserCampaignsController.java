@@ -6,6 +6,7 @@ import br.edu.vaccineapp.usecase.read.GetUserByName;
 import br.edu.vaccineapp.usecase.read.GetUserCampaigns;
 import br.edu.vaccineapp.viewmodel.UserCampaignsVM;
 import br.edu.vaccineapp.viewmodel.adapter.UserCampaignsVMAdapter;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/v1/vaccination", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserCampaignsController {
 
     @Autowired
@@ -24,8 +26,8 @@ public class UserCampaignsController {
     @Autowired
     private GetUserCampaigns getUserCampaigns;
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{userName}/campaigns")
+    @ApiOperation(value = "Return all user's campaigns")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity getUserCampaignsByUserName(@PathVariable final String userName){
         try{

@@ -2,6 +2,7 @@ package br.edu.vaccineapp.endpoint.rest;
 
 import br.edu.vaccineapp.entity.Vaccine;
 import br.edu.vaccineapp.usecase.creation.CreateVaccine;
+import br.edu.vaccineapp.usecase.delete.DeleteVaccine;
 import br.edu.vaccineapp.usecase.read.GetAllVaccines;
 import br.edu.vaccineapp.usecase.read.GetVaccineById;
 import br.edu.vaccineapp.usecase.update.UpdateVaccine;
@@ -35,6 +36,9 @@ public class VaccineController {
 
     @Autowired
     private UpdateVaccine updateVaccine;
+
+    @Autowired
+    private DeleteVaccine deleteVaccine;
 
     @GetMapping
     @ApiOperation(value = "Return all vaccines in data base")
@@ -79,6 +83,21 @@ public class VaccineController {
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception err) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(vaccineVM);
+        }
+    }
+
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Delete vaccine in data base")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity deleteVaccineById(@RequestHeader("user-profile") final String userProfile, @PathVariable final Long id) {
+        try {
+            final Vaccine vaccine = getVaccineById.execute(id);
+            final boolean result = deleteVaccine.execute(vaccine, userProfile);
+            if(result) return ResponseEntity.status(HttpStatus.OK).body(null);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        } catch (Exception err) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
     }
 

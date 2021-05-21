@@ -3,7 +3,7 @@ package br.edu.vaccineapp.usecase.update;
 import br.edu.vaccineapp.entity.Vaccine;
 import br.edu.vaccineapp.external.SaveVaccineInDataBase;
 import br.edu.vaccineapp.usecase.validation.ValidateUserProfile;
-import br.edu.vaccineapp.usecase.validation.ValidationUpdateVaccine;
+import br.edu.vaccineapp.usecase.validation.ValidateUpdateVaccine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class UpdateVaccine {
 
     @Autowired
-    private ValidationUpdateVaccine validationUpdateVaccine;
+    private ValidateUpdateVaccine validationUpdateVaccine;
 
     @Autowired
     private ValidateUserProfile validateUserProfile;

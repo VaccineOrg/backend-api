@@ -1,4 +1,4 @@
-package br.edu.vaccineapp.viewmodel;
+package br.edu.vaccineapp.viewmodel.output;
 
 public class VaccineVM {
 

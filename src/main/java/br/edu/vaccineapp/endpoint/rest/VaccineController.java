@@ -7,7 +7,9 @@ import br.edu.vaccineapp.usecase.read.GetAllVaccines;
 import br.edu.vaccineapp.usecase.read.GetVaccineById;
 import br.edu.vaccineapp.usecase.update.UpdateVaccine;
 import br.edu.vaccineapp.usecase.validation.ValidateDeleteVaccine;
-import br.edu.vaccineapp.viewmodel.VaccineVM;
+import br.edu.vaccineapp.viewmodel.adapter.VaccineVMInputAdapter;
+import br.edu.vaccineapp.viewmodel.input.VaccineVMInput;
+import br.edu.vaccineapp.viewmodel.output.VaccineVM;
 import br.edu.vaccineapp.viewmodel.adapter.VaccineVMAdapter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -69,20 +71,20 @@ public class VaccineController {
     @PostMapping
     @ApiOperation(value = "Create vaccine in data base")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<VaccineVM> createVaccine (@RequestHeader("user-profile") final String userProfile, @RequestBody final VaccineVM vaccineVM) {
+    public ResponseEntity<VaccineVM> createVaccine (@RequestHeader("user-profile") final String userProfile, @RequestBody final VaccineVMInput vaccineVM) {
         try{
-            final Vaccine vaccine = createVaccine.execute(VaccineVMAdapter.viewModelToEntity(vaccineVM), userProfile);
+            final Vaccine vaccine = createVaccine.execute(VaccineVMInputAdapter.viewModelToEntity(vaccineVM), userProfile);
             final VaccineVM result = VaccineVMAdapter.entityToViewModel(vaccine);
             return ResponseEntity.status(HttpStatus.CREATED).body(result);
         } catch (Exception err){
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(vaccineVM);
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
         }
     }
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update vaccine in data base")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<VaccineVM> updateVaccine(@RequestHeader("user-profile") final String userProfile, @RequestBody final VaccineVM vaccineVM, @PathVariable final Long id){
+    public ResponseEntity<VaccineVM> updateVaccine(@RequestHeader("user-profile") final String userProfile, @RequestBody final VaccineVMInput vaccineVM, @PathVariable final Long id){
         try{
             final Vaccine vaccine = getVaccineById.execute(id);
             vaccine.setName(vaccineVM.getName());
@@ -92,7 +94,7 @@ public class VaccineController {
             final VaccineVM result = VaccineVMAdapter.entityToViewModel(vaccineAux);
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception err) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(vaccineVM);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
     }
 

@@ -1,6 +1,7 @@
 package br.edu.vaccineapp.endpoint.rest;
 
 import br.edu.vaccineapp.entity.Vaccine;
+import br.edu.vaccineapp.usecase.creation.CreateVaccine;
 import br.edu.vaccineapp.usecase.read.GetAllVaccines;
 import br.edu.vaccineapp.viewmodel.VaccineVM;
 import br.edu.vaccineapp.viewmodel.adapter.VaccineVMAdapter;
@@ -20,6 +21,9 @@ public class VaccineController {
     @Autowired
     private GetAllVaccines getAllVaccines;
 
+    @Autowired
+    private CreateVaccine createVaccine;
+
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -27,15 +31,25 @@ public class VaccineController {
         try {
             final List<Vaccine> vaccineList = getAllVaccines.execute(userProfile);
             final List<VaccineVM> vaccineVMList = new ArrayList<>();
-
             for (Vaccine item : vaccineList) {
                 vaccineVMList.add(VaccineVMAdapter.entityToViewModel(item));
             }
-
             return ResponseEntity.status(HttpStatus.OK).body(vaccineVMList);
-        } catch (Exception err) {
+        }catch (Exception err) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<VaccineVM> createVaccine (@RequestHeader("user-profile") final String userProfile, @RequestBody final VaccineVM vaccineVM) {
+        try{
+            final Vaccine vaccine = createVaccine.execute(VaccineVMAdapter.viewModelToEntity(vaccineVM), userProfile);
+            final VaccineVM result = VaccineVMAdapter.entityToViewModel(vaccine);
+            return ResponseEntity.status(HttpStatus.CREATED).body(result);
+        } catch (Exception err){
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(vaccineVM);
+        }
+    }
 }

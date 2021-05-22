@@ -25,7 +25,6 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/v1/vaccine", produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(value = "Vaccine Application API")
-@CrossOrigin(origins = "http://localhost:3000")
 public class VaccineController {
 
     @Autowired

@@ -5,8 +5,11 @@ import br.edu.vaccineapp.external.GetVaccineByIdInDataBase;
 import br.edu.vaccineapp.external.database.entity.VaccineModel;
 import br.edu.vaccineapp.external.database.entity.adapter.VaccineModelAdapter;
 import br.edu.vaccineapp.external.database.repository.VaccineRepository;
+import org.hibernate.exception.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.sql.SQLException;
 
 @Component
 public class GetVaccineByIdInDataBaseImpl implements GetVaccineByIdInDataBase {
@@ -20,7 +23,7 @@ public class GetVaccineByIdInDataBaseImpl implements GetVaccineByIdInDataBase {
             VaccineModel vaccine = vaccineRepository.getOne(id);
             return VaccineModelAdapter.modelToEntity(vaccine);
         } catch (Exception err) {
-            return null;
+            throw new NullPointerException("Erro de banco");
         }
     }
 }

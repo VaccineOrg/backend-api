@@ -11,8 +11,9 @@ public class ValidateCreateVaccine {
     @Autowired
     private GetVaccineByName getVaccineByName;
 
-    public boolean execute(Vaccine vaccine) {
-        return getVaccineByName.execute(vaccine.getName()) == null;
+    public boolean execute(Vaccine vaccine) throws NoSuchFieldError{
+        if(getVaccineByName.execute(vaccine.getName()) == null) return true;
+        throw new NoSuchFieldError("Nome inválido");
     }
 
 }

@@ -49,7 +49,6 @@ public class VaccineController {
     @ApiOperation(value = "Return all vaccines in data base")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<VaccineVM>> getAllVaccines(@RequestHeader("user-profile") final String userProfile) {
-        try {
             final List<Vaccine> vaccineList = getAllVaccines.execute(userProfile);
             final List<VaccineVM> vaccineVMList = new ArrayList<>();
             for (Vaccine item : vaccineList) {
@@ -62,39 +61,25 @@ public class VaccineController {
                 vaccineVMList.add(vaccineVM);
             }
             return ResponseEntity.status(HttpStatus.OK).body(vaccineVMList);
-        }catch (Exception err) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-        }
     }
 
     @PostMapping
     @ApiOperation(value = "Create vaccine in data base")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<VaccineVM> createVaccine (@RequestHeader("user-profile") final String userProfile, @RequestBody final VaccineVMInput vaccineVM) {
-        try{
+    public ResponseEntity<VaccineVM> createVaccine (@RequestHeader("user-profile") final String userProfile, @RequestBody final VaccineVMInput vaccineVM) throws IllegalAccessException {
             final Vaccine vaccine = createVaccine.execute(VaccineVMInputAdapter.viewModelToEntity(vaccineVM), userProfile);
             final VaccineVM result = VaccineVMAdapter.entityToViewModel(vaccine);
             return ResponseEntity.status(HttpStatus.CREATED).body(result);
-        } catch (Exception err){
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
-        }
     }
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update vaccine in data base")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<VaccineVM> updateVaccine(@RequestHeader("user-profile") final String userProfile, @RequestBody final VaccineVMInput vaccineVM, @PathVariable final Long id){
-        try{
             final Vaccine vaccine = getVaccineById.execute(id);
-            vaccine.setName(vaccineVM.getName());
-            vaccine.setDescription(vaccineVM.getDescription());
-
-            final Vaccine vaccineAux = updateVaccine.execute(vaccine, userProfile);
+            final Vaccine vaccineAux = updateVaccine.execute(vaccine, vaccineVM, userProfile);
             final VaccineVM result = VaccineVMAdapter.entityToViewModel(vaccineAux);
             return ResponseEntity.status(HttpStatus.OK).body(result);
-        } catch (Exception err) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-        }
     }
 
 
@@ -102,13 +87,9 @@ public class VaccineController {
     @ApiOperation(value = "Delete vaccine in data base")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity deleteVaccineById(@RequestHeader("user-profile") final String userProfile, @PathVariable final Long id) {
-        try {
             final Vaccine vaccine = getVaccineById.execute(id);
             final boolean result = deleteVaccine.execute(vaccine, userProfile);
             if(result) return ResponseEntity.status(HttpStatus.OK).body(null);
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-        } catch (Exception err) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-        }
     }
 }

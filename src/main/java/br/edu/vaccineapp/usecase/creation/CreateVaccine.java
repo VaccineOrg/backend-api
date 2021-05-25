@@ -19,8 +19,8 @@ public class CreateVaccine {
     @Autowired
     private ValidateUserProfile validateUserProfile;
 
-    public Vaccine execute(final Vaccine vaccine, final String userProfile){
-        if (validateCreateVaccine.execute(vaccine) && validateUserProfile.execute(userProfile)) {
+    public Vaccine execute(final Vaccine vaccine, final String userProfile) throws NoSuchFieldError {
+        if (validateUserProfile.execute(userProfile) && validateCreateVaccine.execute(vaccine)) {
             return saveVaccineInDataBase.execute(vaccine);
         }
         return null;

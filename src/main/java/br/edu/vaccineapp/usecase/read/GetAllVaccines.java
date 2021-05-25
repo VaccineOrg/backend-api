@@ -20,8 +20,8 @@ public class GetAllVaccines {
     @Autowired
     private ValidateUserProfile validateUserProfile;
 
-    public List<Vaccine> execute(String userProfile) {
-        if (validateUserProfile.execute(userProfile)) {
+    public List<Vaccine> execute(String userProfile)  throws NoSuchFieldError{
+            validateUserProfile.execute(userProfile);
             final List<VaccineModel> vaccineModelList = vaccineRepository.findAll();
             final List<Vaccine> vaccineList = new ArrayList<>();
 
@@ -29,8 +29,5 @@ public class GetAllVaccines {
                 vaccineList.add(VaccineModelAdapter.modelToEntity(item));
             }
             return vaccineList;
-        }
-        return null;
     }
-
 }

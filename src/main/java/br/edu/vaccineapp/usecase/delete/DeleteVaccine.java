@@ -23,13 +23,12 @@ public class DeleteVaccine {
     @Autowired
     private DeleteVaccineInDataBaseImpl deleteVaccineInDataBaseImpl;
 
-    public boolean execute(Vaccine vaccine, String userProfile) {
+    public boolean execute(Vaccine vaccine, String userProfile) throws NoSuchFieldError {
         final Vaccine vaccineFound = getVaccineById.execute(vaccine.getId());
-        if(validateDeleteVaccine.execute(vaccineFound) && validateUserProfile.execute(userProfile)){
+        if(validateUserProfile.execute(userProfile) && validateDeleteVaccine.execute(vaccineFound)){
             deleteVaccineInDataBaseImpl.execute(vaccineFound);
             return true;
         }
-        return false;
+        throw new NoSuchFieldError("Vacina atrelada a uma campanha!");
     }
-
 }

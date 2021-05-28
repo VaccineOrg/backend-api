@@ -7,6 +7,7 @@ import br.edu.vaccineapp.external.database.entity.CampaignModel;
 import br.edu.vaccineapp.external.database.entity.VaccineCampaignModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CampaignModelAdapter {
@@ -20,13 +21,13 @@ public class CampaignModelAdapter {
         entity.setDateBegin(model.getDateBegin());
         entity.setDateEnd(model.getDateEnd());
 
-        List<VaccineCampaign> vaccineCampaignList = new ArrayList<>();
-        List<VaccineCampaignModel> vaccineCampaignModelList = model.getVaccineCampaigns();
-
-        for(VaccineCampaignModel item : vaccineCampaignModelList) {
-            vaccineCampaignList.add(VaccineCampaignModelAdapter.modelToEntity(item));
-        }
-        entity.setVaccineCampaigns(vaccineCampaignList);
+//        List<VaccineCampaign> vaccineCampaignList = new ArrayList<>();
+//        List<VaccineCampaignModel> vaccineCampaignModelList = model.getVaccineCampaigns();
+//
+//        for(VaccineCampaignModel item : vaccineCampaignModelList) {
+//            vaccineCampaignList.add(VaccineCampaignModelAdapter.modelToEntity(item));
+//        }
+//        entity.setVaccineCampaigns(vaccineCampaignList);
 
         return entity;
     }
@@ -35,17 +36,18 @@ public class CampaignModelAdapter {
         final CampaignModel model = new CampaignModel();
         model.setId(entity.getId());
         model.setName(entity.getName());
-        model.setDateCreate(entity.getDateCreate());
+        model.setStatus(entity.getStatus().toString());
+        model.setDateCreate(new Date());
         model.setDateBegin(entity.getDateBegin());
         model.setDateEnd(entity.getDateEnd());
 
-        List<VaccineCampaignModel> vaccineCampaignModelList = new ArrayList<>();
-        List<VaccineCampaign> vaccineCampaignList = entity.getVaccineCampaigns();
-
-        for(VaccineCampaign item : vaccineCampaignList) {
-            vaccineCampaignModelList.add(VaccineCampaignModelAdapter.entityToModel(item));
-        }
-        model.setVaccineCampaigns(vaccineCampaignModelList);
+//        List<VaccineCampaignModel> vaccineCampaignModelList = new ArrayList<>();
+//        List<VaccineCampaign> vaccineCampaignList = entity.getVaccineCampaigns();
+//
+//        for(VaccineCampaign item : vaccineCampaignList) {
+//            vaccineCampaignModelList.add(VaccineCampaignModelAdapter.entityToModel(item));
+//        }
+//        model.setVaccineCampaigns(vaccineCampaignModelList);
 
         return model;
     }

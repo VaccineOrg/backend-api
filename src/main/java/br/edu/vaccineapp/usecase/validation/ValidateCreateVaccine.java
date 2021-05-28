@@ -13,7 +13,7 @@ public class ValidateCreateVaccine {
 
     public boolean execute(Vaccine vaccine) throws NoSuchFieldError{
         if(getVaccineByName.execute(vaccine.getName()) == null) return true;
-        throw new NoSuchFieldError("Nome inválido");
+        throw new NoSuchFieldError("Já existe vacina com este nome cadastrado");
     }
 
 }

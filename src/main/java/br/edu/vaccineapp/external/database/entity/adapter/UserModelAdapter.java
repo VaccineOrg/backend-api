@@ -6,6 +6,7 @@ import br.edu.vaccineapp.external.database.entity.UserModel;
 import br.edu.vaccineapp.external.database.entity.UserVaccineCampaignModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserModelAdapter {
@@ -33,7 +34,7 @@ public class UserModelAdapter {
 
         model.setId(entity.getId());
         model.setUserName(entity.getUserName());
-        model.setDateCreate(entity.getDateCreate());
+        model.setDateCreate(new Date());
 
         List<UserVaccineCampaignModel> userVaccineCampaignModelList = new ArrayList<>();
         List<UserCampaign> userCampaignList = entity.getUserCampaigns();

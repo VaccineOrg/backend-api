@@ -1,6 +1,7 @@
 package br.edu.vaccineapp.external.database.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -8,8 +9,8 @@ import java.util.List;
 public class CampaignModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VACCINEORG.CAM_SEQ")
-    @SequenceGenerator(sequenceName = "VACCINE.CAM_SEQ", allocationSize = 1, name = "VACCINE.CAM_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VACCINEORG.CAMPAIGN_SEQ")
+    @SequenceGenerator(sequenceName = "VACCINEORG.CAMPAIGN_SEQ", allocationSize = 1, name = "VACCINEORG.CAMPAIGN_SEQ")
     @Column(name="campaign_id_pk")
     private Long id;
 
@@ -20,13 +21,13 @@ public class CampaignModel {
     private String status;
 
     @Column(name="date_create")
-    private String dateCreate;
+    private Date dateCreate;
 
     @Column(name="date_begin")
-    private String dateBegin;
+    private Date dateBegin;
 
     @Column(name="date_end")
-    private String dateEnd;
+    private Date dateEnd;
 
     @OneToMany(mappedBy = "campaign")
     private List<UserVaccineCampaignModel> userCampaigns;
@@ -58,27 +59,27 @@ public class CampaignModel {
         this.status = status;
     }
 
-    public String getDateCreate() {
+    public Date getDateCreate() {
         return dateCreate;
     }
 
-    public void setDateCreate(String dateCreate) {
+    public void setDateCreate(Date dateCreate) {
         this.dateCreate = dateCreate;
     }
 
-    public String getDateBegin() {
+    public Date getDateBegin() {
         return dateBegin;
     }
 
-    public void setDateBegin(String dateBegin) {
+    public void setDateBegin(Date dateBegin) {
         this.dateBegin = dateBegin;
     }
 
-    public String getDateEnd() {
+    public Date getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(String dateEnd) {
+    public void setDateEnd(Date dateEnd) {
         this.dateEnd = dateEnd;
     }
 

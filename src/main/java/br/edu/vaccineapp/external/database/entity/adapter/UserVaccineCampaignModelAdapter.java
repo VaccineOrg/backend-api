@@ -3,6 +3,8 @@ package br.edu.vaccineapp.external.database.entity.adapter;
 import br.edu.vaccineapp.entity.UserCampaign;
 import br.edu.vaccineapp.external.database.entity.UserVaccineCampaignModel;
 
+import java.util.Date;
+
 public class UserVaccineCampaignModelAdapter {
 
     public static UserCampaign modelToEntity (final UserVaccineCampaignModel model) {
@@ -18,7 +20,7 @@ public class UserVaccineCampaignModelAdapter {
         final UserVaccineCampaignModel model = new UserVaccineCampaignModel();
         model.setCampaign(CampaignModelAdapter.entityToModel(entity.getCampaign()));
         model.setVaccine(VaccineModelAdapter.entityToModel(entity.getVaccine()));
-        model.setDateCreate(entity.getDateCreate());
+        model.setDateCreate(new Date());
 
         return model;
     }

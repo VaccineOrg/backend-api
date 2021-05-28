@@ -2,6 +2,7 @@ package br.edu.vaccineapp.entity;
 
 import br.edu.vaccineapp.entity.enums.Status;
 
+import java.util.Date;
 import java.util.List;
 
 public class Campaign {
@@ -9,9 +10,9 @@ public class Campaign {
     private Long id;
     private String name;
     private Status status;
-    private String dateCreate;
-    private String dateBegin;
-    private String dateEnd;
+    private Date dateCreate;
+    private Date dateBegin;
+    private Date dateEnd;
     private List<VaccineCampaign> vaccineCampaigns;
 
     public Long getId() {
@@ -38,27 +39,27 @@ public class Campaign {
         this.status = status;
     }
 
-    public String getDateCreate() {
+    public Date getDateCreate() {
         return dateCreate;
     }
 
-    public void setDateCreate(String dateCreate) {
+    public void setDateCreate(Date dateCreate) {
         this.dateCreate = dateCreate;
     }
 
-    public String getDateBegin() {
+    public Date getDateBegin() {
         return dateBegin;
     }
 
-    public void setDateBegin(String dateBegin) {
+    public void setDateBegin(Date dateBegin) {
         this.dateBegin = dateBegin;
     }
 
-    public String getDateEnd() {
+    public Date getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(String dateEnd) {
+    public void setDateEnd(Date dateEnd) {
         this.dateEnd = dateEnd;
     }
 

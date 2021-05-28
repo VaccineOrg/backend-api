@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -32,6 +34,7 @@ public class UserCampaignsController {
         try{
             final User user = getUserByName.execute(userName);
             final List<UserCampaign> userCampaignList = getUserCampaigns.execute(user);
+            Collections.sort(userCampaignList, Comparator.comparing(UserCampaign::getDateCreate).reversed());
             UserCampaignsVM userCampaignsVM = new UserCampaignsVM();
             userCampaignsVM.setUserCampaigns(UserCampaignsVMAdapter.entityToViewModel(user, userCampaignList));
             return ResponseEntity.ok().body(userCampaignsVM);

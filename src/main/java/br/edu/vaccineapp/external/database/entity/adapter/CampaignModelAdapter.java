@@ -21,14 +21,6 @@ public class CampaignModelAdapter {
         entity.setDateBegin(model.getDateBegin());
         entity.setDateEnd(model.getDateEnd());
 
-//        List<VaccineCampaign> vaccineCampaignList = new ArrayList<>();
-//        List<VaccineCampaignModel> vaccineCampaignModelList = model.getVaccineCampaigns();
-//
-//        for(VaccineCampaignModel item : vaccineCampaignModelList) {
-//            vaccineCampaignList.add(VaccineCampaignModelAdapter.modelToEntity(item));
-//        }
-//        entity.setVaccineCampaigns(vaccineCampaignList);
-
         return entity;
     }
 
@@ -40,14 +32,6 @@ public class CampaignModelAdapter {
         model.setDateCreate(new Date());
         model.setDateBegin(entity.getDateBegin());
         model.setDateEnd(entity.getDateEnd());
-
-//        List<VaccineCampaignModel> vaccineCampaignModelList = new ArrayList<>();
-//        List<VaccineCampaign> vaccineCampaignList = entity.getVaccineCampaigns();
-//
-//        for(VaccineCampaign item : vaccineCampaignList) {
-//            vaccineCampaignModelList.add(VaccineCampaignModelAdapter.entityToModel(item));
-//        }
-//        model.setVaccineCampaigns(vaccineCampaignModelList);
 
         return model;
     }

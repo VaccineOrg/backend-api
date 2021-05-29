@@ -12,6 +12,6 @@ public class ValidateDeleteVaccine {
     private GetVaccineByCampaignInDataBaseImpl getVaccineByCampaignInDataBaseImpl;
 
     public boolean execute(Vaccine vaccine) {
-        return getVaccineByCampaignInDataBaseImpl.execute(vaccine.getId()) == null;
+        return getVaccineByCampaignInDataBaseImpl.execute(vaccine.getId());
     }
 }

@@ -14,6 +14,7 @@ public class CampaignVMAdapter {
         final CampaignVM viewModel = new CampaignVM();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
+        viewModel.setId(entity.getId());
         viewModel.setName(entity.getName());
         viewModel.setStatus(entity.getStatus().toString());
 

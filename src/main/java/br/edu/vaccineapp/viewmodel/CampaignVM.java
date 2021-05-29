@@ -1,20 +1,27 @@
 package br.edu.vaccineapp.viewmodel;
 
-import br.edu.vaccineapp.entity.enums.Status;
 import br.edu.vaccineapp.viewmodel.output.VaccineVM;
 
-import java.util.Date;
 import java.util.List;
 
 public class CampaignVM {
 
+    private Long Id;
     private String name;
-//    private List<VaccineVM> vaccineList;
+    private List<VaccineVM> vaccineList;
     private String status;
     private Long numberVaccines;
     private String dateBegin;
     private String dateEnd;
 
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
 
     public String getName() {
         return name;
@@ -54,5 +61,13 @@ public class CampaignVM {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<VaccineVM> getVaccineList() {
+        return vaccineList;
+    }
+
+    public void setVaccineList(List<VaccineVM> vaccineList) {
+        this.vaccineList = vaccineList;
     }
 }

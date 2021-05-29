@@ -17,10 +17,10 @@ public class ValidateUpdateVaccine {
     GetVaccineByName getVaccineByName;
 
     public int execute(Vaccine vaccine, VaccineVMInput vaccineVM) throws NoSuchFieldError{
-        if(getVaccineByCampaignInDataBase.execute(vaccine.getId()) != null && !(vaccine.getName().equals(vaccineVM.getName()))) throw new NoSuchFieldError("Vacina atrelada a uma campanha!");
-        if(getVaccineByCampaignInDataBase.execute(vaccine.getId()) != null) return 0;
-        if(getVaccineByCampaignInDataBase.execute(vaccine.getId()) == null && vaccine.getName().equals(vaccineVM.getName())) return 1;
-        if(getVaccineByCampaignInDataBase.execute(vaccine.getId()) == null && !(vaccine.getName().equals(vaccineVM.getName()))){
+        if(!getVaccineByCampaignInDataBase.execute(vaccine.getId()) && !(vaccine.getName().equals(vaccineVM.getName()))) throw new NoSuchFieldError("Vacina atrelada a uma campanha!");
+        if(!getVaccineByCampaignInDataBase.execute(vaccine.getId())) return 0;
+        if(getVaccineByCampaignInDataBase.execute(vaccine.getId()) && vaccine.getName().equals(vaccineVM.getName())) return 1;
+        if(getVaccineByCampaignInDataBase.execute(vaccine.getId()) && !(vaccine.getName().equals(vaccineVM.getName()))){
             if(getVaccineByName.execute(vaccineVM.getName()) != null) throw new NoSuchFieldError("Nome inválido");
             return 2;
         }

@@ -53,7 +53,7 @@ public class VaccineController {
             final List<VaccineVM> vaccineVMList = new ArrayList<>();
             for (Vaccine item : vaccineList) {
                 VaccineVM vaccineVM = VaccineVMAdapter.entityToViewModel(item);
-                if(validateDeleteVaccine.execute(item)){
+                if(!(validateDeleteVaccine.execute(item))){
                     vaccineVM.setAbleToDelete(true);
                 }else{
                     vaccineVM.setAbleToDelete(false);

@@ -19,6 +19,4 @@ public class SaveCampaignInDataBaseImpl implements SaveCampaignInDataBase {
         CampaignModel model = CampaignModelAdapter.entityToModel(campaign);
         return CampaignModelAdapter.modelToEntity(campaignRepository.save(model));
     }
-
-
 }

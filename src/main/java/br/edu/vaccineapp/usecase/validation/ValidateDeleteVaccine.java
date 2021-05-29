@@ -1,7 +1,7 @@
 package br.edu.vaccineapp.usecase.validation;
 
 import br.edu.vaccineapp.entity.Vaccine;
-import br.edu.vaccineapp.external.database.GetVaccineByCampaignInDataBaseImpl;
+import br.edu.vaccineapp.external.database.GetVaccineIsInCampaignToValidateInDataBaseImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 public class ValidateDeleteVaccine {
 
     @Autowired
-    private GetVaccineByCampaignInDataBaseImpl getVaccineByCampaignInDataBaseImpl;
+    private GetVaccineIsInCampaignToValidateInDataBaseImpl getVaccineByCampaignToValidateInDataBaseImpl;
 
     public boolean execute(Vaccine vaccine) {
-        return getVaccineByCampaignInDataBaseImpl.execute(vaccine.getId());
+        return getVaccineByCampaignToValidateInDataBaseImpl.execute(vaccine.getId());
     }
 }

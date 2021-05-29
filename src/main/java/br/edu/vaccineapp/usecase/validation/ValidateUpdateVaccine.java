@@ -1,7 +1,7 @@
 package br.edu.vaccineapp.usecase.validation;
 
 import br.edu.vaccineapp.entity.Vaccine;
-import br.edu.vaccineapp.external.database.GetVaccineByCampaignInDataBaseImpl;
+import br.edu.vaccineapp.external.database.GetVaccineIsInCampaignToValidateInDataBaseImpl;
 import br.edu.vaccineapp.usecase.read.GetVaccineByName;
 import br.edu.vaccineapp.viewmodel.input.VaccineVMInput;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class ValidateUpdateVaccine {
 
     @Autowired
-    GetVaccineByCampaignInDataBaseImpl getVaccineByCampaignInDataBase;
+    GetVaccineIsInCampaignToValidateInDataBaseImpl getVaccineByCampaignInDataBase;
 
     @Autowired
     GetVaccineByName getVaccineByName;

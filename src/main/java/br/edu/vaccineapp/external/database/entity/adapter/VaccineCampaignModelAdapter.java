@@ -9,6 +9,7 @@ public class VaccineCampaignModelAdapter {
 
     public static VaccineCampaign modelToEntity (final VaccineCampaignModel model) {
         final VaccineCampaign entity = new VaccineCampaign();
+        entity.setId(model.getId());
         entity.setDateCreate(model.getDateCreate());
         entity.setCampaign(CampaignModelAdapter.modelToEntity(model.getCampaign()));
         entity.setNumberVaccines(model.getNumberVaccines());
@@ -19,6 +20,7 @@ public class VaccineCampaignModelAdapter {
 
     public static VaccineCampaignModel entityToModel (final VaccineCampaign entity) {
         final VaccineCampaignModel model = new VaccineCampaignModel();
+        model.setId(entity.getId());
         model.setDateCreate(new Date());
         model.setCampaign(CampaignModelAdapter.entityToModel(entity.getCampaign()));
         model.setNumberVaccines(entity.getNumberVaccines());

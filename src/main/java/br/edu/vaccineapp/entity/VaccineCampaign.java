@@ -4,10 +4,19 @@ import java.util.Date;
 
 public class VaccineCampaign {
 
+    private Long id;
     private Long numberVaccines;
     private Campaign campaign;
     private Vaccine vaccine;
     private Date dateCreate;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getNumberVaccines() {
         return numberVaccines;

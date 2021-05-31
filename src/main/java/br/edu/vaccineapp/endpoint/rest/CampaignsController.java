@@ -1,13 +1,14 @@
 package br.edu.vaccineapp.endpoint.rest;
 
 import br.edu.vaccineapp.entity.Campaign;
-import br.edu.vaccineapp.entity.Vaccine;
+import br.edu.vaccineapp.external.GetCampaignByIdInDataBase;
 import br.edu.vaccineapp.external.database.GetVaccineByCampaignInDataBaseImpl;
 import br.edu.vaccineapp.external.database.entity.VaccineCampaignModel;
 import br.edu.vaccineapp.external.database.entity.adapter.VaccineModelAdapter;
 import br.edu.vaccineapp.usecase.creation.CreateCampaign;
 import br.edu.vaccineapp.usecase.creation.CreateVaccineCampaign;
 import br.edu.vaccineapp.usecase.read.GetAllCampaigns;
+import br.edu.vaccineapp.usecase.update.UpdateCampaign;
 import br.edu.vaccineapp.viewmodel.CampaignVM;
 import br.edu.vaccineapp.viewmodel.adapter.CampaignVMAdapter;
 import br.edu.vaccineapp.viewmodel.adapter.VaccineVMAdapter;
@@ -38,6 +39,13 @@ public class CampaignsController {
 
     @Autowired
     private GetVaccineByCampaignInDataBaseImpl getVaccineByCampaignInDataBase;
+
+    @Autowired
+    private UpdateCampaign updateCampaign;
+
+    @Autowired
+    private GetCampaignByIdInDataBase getCampaignByIdInDataBase;
+
 
     @PostMapping
     @ApiOperation(value = "Create campaign in data base")
@@ -72,5 +80,14 @@ public class CampaignsController {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(campaignVMList);
+    }
+
+    @PutMapping("/{id}")
+    @ApiOperation(value = "Edit campaign in data base")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<CampaignVM> updateCampaign(@RequestHeader("user-profile") final String userProfile, @RequestBody final CampaignVM campaignVM, @PathVariable final Long id) throws ParseException {
+        final Campaign campaign = getCampaignByIdInDataBase.execute(id);
+        final CampaignVM result = updateCampaign.execute(userProfile, campaign, campaignVM);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 }

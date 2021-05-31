@@ -18,6 +18,6 @@ public class GetCampaignByNameInDataBaseImpl implements GetCampaignByName {
     public Campaign execute(String name) {
         CampaignModel model = campaignRepository.findByName(name);
         if(model == null) return null;
-        return CampaignModelAdapter.modelToEntity(model);
+        throw new NoSuchFieldError("Já existe campanha com este nome cadastrado");
     }
 }

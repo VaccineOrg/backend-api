@@ -40,8 +40,7 @@ public class UpdateCampaign {
     @Autowired
     private CreateVaccineCampaign createVaccineCampaign;
 
-    //TODO FALHA NA LÓGICA, A LÓGICA ATUAL EXCLUI TODAS AS USERCAMPAIGNS E RECRIA BASEADO NA CAMPAIGNVM, PORÉM ELE SÓ EXLCUI, NÃO RECRIA
-    public CampaignVM execute(final String userProfile, Campaign campaign /*Campanha atual do bd*/, CampaignVM campaignVM /*Campanha editada pelo user*/) throws ParseException {
+    public CampaignVM execute(final String userProfile, Campaign campaign, CampaignVM campaignVM) throws ParseException {
         if(!(validateUserProfile.execute(userProfile))) return null;
 
         if (validateUpdateCampaign.execute(campaign, campaignVM)) {
@@ -49,7 +48,8 @@ public class UpdateCampaign {
             for(VaccineCampaign item : vaccineCampaignList){
                 deleteVaccineCampaignInDataBase.execute(item);
             }
-            campaign = CampaignVMAdapter.viewModelToEntity(campaignVM); // Nesse momento, a campanha do banco é alterada para ficar igual ao que o user enviou
+            campaignVM.setId(campaign.getId());
+            campaign = CampaignVMAdapter.viewModelToEntity(campaignVM);
             CampaignVM campaignVMInDB = CampaignVMAdapter.entityToViewModel(saveCampaignInDataBase.execute(campaign));
             List<VaccineVM> vaccineVMList =  createVaccineCampaign.execute(campaign, campaignVM);
             campaignVMInDB.setVaccineList(vaccineVMList);

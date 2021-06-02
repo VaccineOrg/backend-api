@@ -10,6 +10,7 @@ import br.edu.vaccineapp.usecase.creation.CreateVaccineCampaign;
 import br.edu.vaccineapp.usecase.delete.DeleteCampaign;
 import br.edu.vaccineapp.usecase.read.GetAllCampaigns;
 import br.edu.vaccineapp.usecase.update.UpdateCampaign;
+import br.edu.vaccineapp.usecase.update.UpdateCampaignStatus;
 import br.edu.vaccineapp.viewmodel.CampaignVM;
 import br.edu.vaccineapp.viewmodel.adapter.CampaignVMAdapter;
 import br.edu.vaccineapp.viewmodel.adapter.VaccineVMAdapter;
@@ -49,6 +50,9 @@ public class CampaignsController {
 
     @Autowired
     private DeleteCampaign deleteCampaign;
+
+    @Autowired
+    private UpdateCampaignStatus updateCampaignStatus;
 
 
     @PostMapping
@@ -102,5 +106,25 @@ public class CampaignsController {
         final Campaign campaign = getCampaignByIdInDataBase.execute(id);
         if(deleteCampaign.execute(campaign, userProfile)) return ResponseEntity.status(HttpStatus.OK).body(null);
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+    }
+
+    @PutMapping("/status/{id}")
+    @ApiOperation(value = "Update status of campaign")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<CampaignVM> updateCampaignStatus(@RequestHeader("user-profile") final String userProfile, @PathVariable final Long id) throws ParseException {
+        Campaign campaign = getCampaignByIdInDataBase.execute(id);
+        Campaign result = updateCampaignStatus.execute(campaign, userProfile);
+
+        CampaignVM campaignAux =  CampaignVMAdapter.entityToViewModel(result);
+        List<VaccineCampaignModel> vaccineCampaignModelList = getVaccineByCampaignInDataBase.execute(result.getId());
+        List<VaccineVM> vaccineVMList = new ArrayList<>();
+
+        for (VaccineCampaignModel vaccineCampaignModel : vaccineCampaignModelList) {
+            vaccineVMList.add(VaccineVMAdapter.entityToViewModel(VaccineModelAdapter.modelToEntity(vaccineCampaignModel.getVaccine())));
+            campaignAux.setNumberVaccines(vaccineCampaignModel.getNumberVaccines());
+        }
+        campaignAux.setVaccineList(vaccineVMList);
+
+        return ResponseEntity.status(HttpStatus.OK).body(campaignAux);
     }
 }

@@ -7,6 +7,7 @@ import br.edu.vaccineapp.external.database.entity.VaccineCampaignModel;
 import br.edu.vaccineapp.external.database.entity.adapter.VaccineModelAdapter;
 import br.edu.vaccineapp.usecase.creation.CreateCampaign;
 import br.edu.vaccineapp.usecase.creation.CreateVaccineCampaign;
+import br.edu.vaccineapp.usecase.delete.DeleteCampaign;
 import br.edu.vaccineapp.usecase.read.GetAllCampaigns;
 import br.edu.vaccineapp.usecase.update.UpdateCampaign;
 import br.edu.vaccineapp.viewmodel.CampaignVM;
@@ -45,6 +46,9 @@ public class CampaignsController {
 
     @Autowired
     private GetCampaignByIdInDataBase getCampaignByIdInDataBase;
+
+    @Autowired
+    private DeleteCampaign deleteCampaign;
 
 
     @PostMapping
@@ -89,5 +93,14 @@ public class CampaignsController {
         final Campaign campaign = getCampaignByIdInDataBase.execute(id);
         final CampaignVM result = updateCampaign.execute(userProfile, campaign, campaignVM);
         return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Delete campaign in data base")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity deleteCampaignById(@RequestHeader("user-profile") final String userProfile, @PathVariable final Long id){
+        final Campaign campaign = getCampaignByIdInDataBase.execute(id);
+        if(deleteCampaign.execute(campaign, userProfile)) return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
     }
 }

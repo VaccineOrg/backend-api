@@ -92,4 +92,6 @@ public class VaccineController {
             if(result) return ResponseEntity.status(HttpStatus.OK).body(null);
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
     }
+
+
 }

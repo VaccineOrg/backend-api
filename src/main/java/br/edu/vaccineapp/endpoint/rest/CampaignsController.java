@@ -108,7 +108,7 @@ public class CampaignsController {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
     }
 
-    @PutMapping("/status/{id}")
+    @GetMapping("/status/{id}")
     @ApiOperation(value = "Update status of campaign")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<CampaignVM> updateCampaignStatus(@RequestHeader("user-profile") final String userProfile, @PathVariable final Long id) throws ParseException {

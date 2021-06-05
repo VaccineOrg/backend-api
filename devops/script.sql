@@ -1,19 +1,19 @@
 ---- -> User
 
 INSERT INTO VACCINEORG.users values (
-    VACCINEORG.users_seq.NEXTVAL, 'Bruno', 105030, to_date('23/02/2021','DD/MM/YYYY')
+    VACCINEORG.users_seq.NEXTVAL, 'Bruno', 105030, to_date('23/02/2021','DD/MM/YYYY'), 'bruno@gmail.com', '1234'
 );
 
 INSERT INTO VACCINEORG.users values (
-    VACCINEORG.users_seq.NEXTVAL, 'Luiz', 105031, to_date('20/05/2021','DD/MM/YYYY')
+    VACCINEORG.users_seq.NEXTVAL, 'Luiz', 105031, to_date('20/05/2021','DD/MM/YYYY'), 'luiz@gmail.com', '1234'
 );
 
 INSERT INTO VACCINEORG.users values (
-    VACCINEORG.users_seq.NEXTVAL, 'Gabriel', 105032, to_date('19/05/2021','DD/MM/YYYY')
+    VACCINEORG.users_seq.NEXTVAL, 'Gabriel', 105032, to_date('19/05/2021','DD/MM/YYYY'), 'gabriel@gmail.com', '1234'
 );
 
 INSERT INTO VACCINEORG.users values (
-    VACCINEORG.users_seq.NEXTVAL, 'Gustavo', 105033, to_date('19/05/2021','DD/MM/YYYY')
+    VACCINEORG.users_seq.NEXTVAL, 'Gustavo', 105033, to_date('19/05/2021','DD/MM/YYYY'), 'gabriel@gmail.com', '1234'
 );
 
 ----- -> Vaccine

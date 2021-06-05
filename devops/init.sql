@@ -41,6 +41,8 @@ CREATE TABLE VACCINEORG.USERS (
 	user_name VARCHAR2(200) NOT NULL,
 	employee_id NUMBER(10) NOT NULL,
 	date_create DATE  NOT NULL,
+	email VARCHAR2(100) NOT NULL,
+	password VARCHAR2(100) NOT NULL,
     CONSTRAINT user_id_pk PRIMARY KEY  (user_id_pk)
 );
 

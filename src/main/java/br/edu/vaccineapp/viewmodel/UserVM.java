@@ -1,17 +1,14 @@
-package br.edu.vaccineapp.entity;
+package br.edu.vaccineapp.viewmodel;
 
 import java.util.Date;
-import java.util.List;
 
-public class User {
-
+public class UserVM {
     private Long id;
     private String userName;
     private String email;
     private String password;
     private String employeeId;
     private Date dateCreate;
-    private List<UserCampaign> userCampaigns;
 
     public Long getId() {
         return id;
@@ -59,13 +56,5 @@ public class User {
 
     public void setDateCreate(Date dateCreate) {
         this.dateCreate = dateCreate;
-    }
-
-    public List<UserCampaign> getUserCampaigns() {
-        return userCampaigns;
-    }
-
-    public void setUserCampaigns(List<UserCampaign> userCampaigns) {
-        this.userCampaigns = userCampaigns;
     }
 }

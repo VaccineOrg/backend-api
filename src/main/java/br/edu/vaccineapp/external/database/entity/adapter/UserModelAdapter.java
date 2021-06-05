@@ -17,6 +17,8 @@ public class UserModelAdapter {
         entity.setId(model.getId());
         entity.setUserName(model.getUserName());
         entity.setDateCreate(model.getDateCreate());
+        entity.setEmail(model.getEmail());
+        entity.setPassword(model.getPassword());
 
         List<UserCampaign> userCampaignList = new ArrayList<>();
         List<UserVaccineCampaignModel> userVaccineCampaignModelList = model.getUserCampaigns();
@@ -35,6 +37,8 @@ public class UserModelAdapter {
         model.setId(entity.getId());
         model.setUserName(entity.getUserName());
         model.setDateCreate(new Date());
+        model.setEmail(entity.getEmail());
+        model.setPassword(entity.getPassword());
 
         List<UserVaccineCampaignModel> userVaccineCampaignModelList = new ArrayList<>();
         List<UserCampaign> userCampaignList = entity.getUserCampaigns();

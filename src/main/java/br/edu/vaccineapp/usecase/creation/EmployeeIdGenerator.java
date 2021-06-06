@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.UUID;
 
 @Service
-public class EmployeeIdGeneratorUsecase {
+public class EmployeeIdGenerator {
 
     @Autowired
     private ValidateEmailInSelectedEmails validateEmailInSelectedEmails;

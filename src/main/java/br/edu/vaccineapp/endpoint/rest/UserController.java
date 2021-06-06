@@ -37,6 +37,15 @@ public class UserController {
     @Autowired
     private DeleteUser deleteUser;
 
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Get user's informations by id")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<UserVM> getUser(@PathVariable final Long id) {
+        User user = getUserByIdInDataBase.execute(id);
+        UserVM userVM = UserVMAdapter.entityToViewModel(user);
+        return ResponseEntity.status(HttpStatus.OK).body(userVM);
+    }
+
     @PostMapping("/register")
     @ApiOperation(value = "Create user in data base")
     @ResponseStatus(HttpStatus.CREATED)

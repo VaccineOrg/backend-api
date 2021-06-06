@@ -4,5 +4,5 @@ import br.edu.vaccineapp.external.database.entity.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserEmailRepository extends JpaRepository<UserModel, Long> {
-    UserModel findByUserEmail(String email);
+    UserModel findUserByEmail(String email);
 }

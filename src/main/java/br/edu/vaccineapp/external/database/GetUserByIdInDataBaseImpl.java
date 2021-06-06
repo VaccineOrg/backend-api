@@ -17,7 +17,7 @@ public class GetUserByIdInDataBaseImpl implements GetUserByIdInDataBase {
 
     @Override
     public User execute(Long id) {
-        UserModel user = userIdRepository.findByUserId(id);
+        UserModel user = userIdRepository.findUserById(id);
         return UserModelAdapter.modelToEntity(user);
     }
 }

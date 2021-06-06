@@ -1,7 +1,9 @@
 package br.edu.vaccineapp.endpoint.rest;
 
 import br.edu.vaccineapp.entity.User;
+import br.edu.vaccineapp.external.database.GetUserByIdInDataBaseImpl;
 import br.edu.vaccineapp.usecase.creation.CreateUser;
+import br.edu.vaccineapp.usecase.update.UpdateUser;
 import br.edu.vaccineapp.usecase.validation.ValidateLogin;
 import br.edu.vaccineapp.viewmodel.UserVM;
 import br.edu.vaccineapp.viewmodel.adapter.UserVMAdapter;
@@ -25,6 +27,12 @@ public class UserController {
     @Autowired
     private ValidateLogin validateLogin;
 
+    @Autowired
+    private GetUserByIdInDataBaseImpl getUserByIdInDataBase;
+
+    @Autowired
+    private UpdateUser updateUser;
+
     @PostMapping("/register")
     @ApiOperation(value = "Create user in data base")
     @ResponseStatus(HttpStatus.CREATED)
@@ -40,6 +48,16 @@ public class UserController {
     public ResponseEntity<UserVM> login(@RequestBody LoginVM loginVM) {
         final User user = validateLogin.execute(loginVM);
         final UserVM result = UserVMAdapter.entityToViewModel(user);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
+    @PutMapping("/{id}")
+    @ApiOperation(value = "Update user in database")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<UserVM> updateUser(@PathVariable final Long id, @RequestBody UserVM userVM) {
+        final User user = getUserByIdInDataBase.execute(id);
+        final User updatedUser = updateUser.execute(userVM, user);
+        final UserVM result = UserVMAdapter.entityToViewModel(updatedUser);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 }

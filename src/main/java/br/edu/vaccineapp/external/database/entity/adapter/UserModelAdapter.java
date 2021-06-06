@@ -6,6 +6,7 @@ import br.edu.vaccineapp.external.database.entity.UserModel;
 import br.edu.vaccineapp.external.database.entity.UserVaccineCampaignModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -19,15 +20,18 @@ public class UserModelAdapter {
         entity.setDateCreate(model.getDateCreate());
         entity.setEmail(model.getEmail());
         entity.setPassword(model.getPassword());
+        entity.setEmployeeId(model.getEmployeeId());
+        entity.setDateCreate(model.getDateCreate());
 
         List<UserCampaign> userCampaignList = new ArrayList<>();
         List<UserVaccineCampaignModel> userVaccineCampaignModelList = model.getUserCampaigns();
 
-        for(UserVaccineCampaignModel item : userVaccineCampaignModelList) {
-            userCampaignList.add(UserVaccineCampaignModelAdapter.modelToEntity(item));
+        if(userVaccineCampaignModelList != null) {
+            for (UserVaccineCampaignModel item : userVaccineCampaignModelList) {
+                userCampaignList.add(UserVaccineCampaignModelAdapter.modelToEntity(item));
+            }
+            entity.setUserCampaigns(userCampaignList);
         }
-        entity.setUserCampaigns(userCampaignList);
-
         return entity;
     }
 
@@ -39,15 +43,17 @@ public class UserModelAdapter {
         model.setDateCreate(new Date());
         model.setEmail(entity.getEmail());
         model.setPassword(entity.getPassword());
+        model.setEmployeeId(entity.getEmployeeId());
 
         List<UserVaccineCampaignModel> userVaccineCampaignModelList = new ArrayList<>();
         List<UserCampaign> userCampaignList = entity.getUserCampaigns();
 
-        for(UserCampaign item : userCampaignList) {
-            userVaccineCampaignModelList.add(UserVaccineCampaignModelAdapter.entityToModel(item));
+        if(userCampaignList != null) {
+            for(UserCampaign item : userCampaignList) {
+                userVaccineCampaignModelList.add(UserVaccineCampaignModelAdapter.entityToModel(item));
+            }
+            model.setUserCampaigns(userVaccineCampaignModelList);
         }
-
-        model.setUserCampaigns(userVaccineCampaignModelList);
 
         return model;
     }

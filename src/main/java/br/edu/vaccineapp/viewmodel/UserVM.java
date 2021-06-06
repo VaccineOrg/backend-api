@@ -8,7 +8,6 @@ public class UserVM {
     private String email;
     private String password;
     private String employeeId;
-    private Date dateCreate;
 
     public Long getId() {
         return id;
@@ -50,11 +49,4 @@ public class UserVM {
         this.employeeId = employeeId;
     }
 
-    public Date getDateCreate() {
-        return dateCreate;
-    }
-
-    public void setDateCreate(Date dateCreate) {
-        this.dateCreate = dateCreate;
-    }
 }

@@ -17,6 +17,7 @@ public class GetUserByEmailInDataBaseImpl implements GetUserByEmailInDataBase {
     @Override
     public User execute(String email) {
         UserModel user = userEmailRepository.findUserByEmail(email);
+        if(user == null) return null;
         return UserModelAdapter.modelToEntity(user);
     }
 }

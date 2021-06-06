@@ -3,6 +3,7 @@ package br.edu.vaccineapp.endpoint.rest;
 import br.edu.vaccineapp.entity.User;
 import br.edu.vaccineapp.external.database.GetUserByIdInDataBaseImpl;
 import br.edu.vaccineapp.usecase.creation.CreateUser;
+import br.edu.vaccineapp.usecase.delete.DeleteUser;
 import br.edu.vaccineapp.usecase.update.UpdateUser;
 import br.edu.vaccineapp.usecase.validation.ValidateLogin;
 import br.edu.vaccineapp.viewmodel.UserVM;
@@ -33,6 +34,9 @@ public class UserController {
     @Autowired
     private UpdateUser updateUser;
 
+    @Autowired
+    private DeleteUser deleteUser;
+
     @PostMapping("/register")
     @ApiOperation(value = "Create user in data base")
     @ResponseStatus(HttpStatus.CREATED)
@@ -59,5 +63,13 @@ public class UserController {
         final User updatedUser = updateUser.execute(userVM, user);
         final UserVM result = UserVMAdapter.entityToViewModel(updatedUser);
         return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Delete user in data base")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity deleteUser(@PathVariable Long id) {
+        if(deleteUser.execute(id)) return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
     }
 }

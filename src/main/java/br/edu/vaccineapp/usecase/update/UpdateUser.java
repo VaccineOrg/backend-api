@@ -15,7 +15,7 @@ public class UpdateUser {
     public User execute(final UserVM userVM, final User user){
         if(userVM.getEmail().equals(user.getEmail())) {
             user.setUserName(userVM.getUserName());
-            user.setPassword(user.getPassword());
+            user.setPassword(userVM.getPassword());
             return saveUserInDataBase.execute(user);
         }
         throw new NoSuchFieldError("Não é possível alterar o email");

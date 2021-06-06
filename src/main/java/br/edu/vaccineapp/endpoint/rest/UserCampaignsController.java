@@ -2,6 +2,7 @@ package br.edu.vaccineapp.endpoint.rest;
 
 import br.edu.vaccineapp.entity.User;
 import br.edu.vaccineapp.entity.UserCampaign;
+import br.edu.vaccineapp.external.database.GetUserByIdInDataBaseImpl;
 import br.edu.vaccineapp.usecase.read.GetUserByName;
 import br.edu.vaccineapp.usecase.read.GetUserCampaigns;
 import br.edu.vaccineapp.viewmodel.UserCampaignsVM;
@@ -27,12 +28,15 @@ public class UserCampaignsController {
     @Autowired
     private GetUserCampaigns getUserCampaigns;
 
-    @GetMapping("/{userName}/campaigns")
+    @Autowired
+    private GetUserByIdInDataBaseImpl getUserByIdInDataBase;
+
+    @GetMapping("/{id}/campaigns")
     @ApiOperation(value = "Return all user's campaigns")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity getUserCampaignsByUserName(@PathVariable final String userName){
+    public ResponseEntity getUserCampaignsByUserName(@PathVariable final Long id){
         try{
-            final User user = getUserByName.execute(userName);
+            final User user = getUserByIdInDataBase.execute(id);
             final List<UserCampaign> userCampaignList = getUserCampaigns.execute(user);
             Collections.sort(userCampaignList, Comparator.comparing(UserCampaign::getDateCreate).reversed());
             UserCampaignsVM userCampaignsVM = new UserCampaignsVM();

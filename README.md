@@ -15,7 +15,7 @@ Before starting, you will need to have the following tools installed on your mac
 
 * Open the project in the IDE of your choice
 
-* Go to "src/main/resources/application.properties", Change connection settings, point to your oracle instance
+* Go to "src/main/resources/application.properties", change connection settings, point to your oracle instance
 
 * Run the project, the server will open at http://localhost:8081
 

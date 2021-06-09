@@ -11,11 +11,11 @@ Before starting, you will need to have the following tools installed on your mac
 ### Running
 * Clone this repository: git clone https://github.com/VaccineOrg/backend-api.git
 
-* Go to backend/devops, run init.sql and script.sql in oracleDB
+* Go to backend/devops, run init.sql and script.sql in OracleDB
 
 * Open the project in the IDE of your choice
 
-* Go to "src/main/resources/application.properties", change connection settings, point to your oracle instance
+* Go to "src/main/resources/application.properties", change connection settings, point to your Oracle instance
 
 * Run the project, the server will open at http://localhost:8081
 

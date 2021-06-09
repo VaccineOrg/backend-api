@@ -73,6 +73,28 @@ public class CampaignsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Return all campaings in data base")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<CampaignVM> getCampaigns(@PathVariable Long id) throws ParseException {
+        Campaign campaign = getCampaignByIdInDataBase.execute(id);
+        CampaignVM result = CampaignVMAdapter.entityToViewModel(campaign);
+
+        List<VaccineCampaignModel> vaccineCampaignModelList = getVaccineByCampaignInDataBase.execute(campaign.getId());
+        List<VaccineVM> vaccineVMList = new ArrayList<>();
+
+        for (VaccineCampaignModel vaccineCampaignModel : vaccineCampaignModelList) {
+            vaccineVMList.add(VaccineVMAdapter.entityToViewModel(VaccineModelAdapter.modelToEntity(vaccineCampaignModel.getVaccine())));
+            result.setNumberVaccines(vaccineCampaignModel.getNumberVaccines());
+        }
+        result.setVaccineList(vaccineVMList);
+        List<UserVaccineCampaignModel> userVaccineCampaignModelList = getUserByCampaignInDataBase.execute(campaign.getId());
+        result.setAdhered(userVaccineCampaignModelList.size());
+
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
+
     @GetMapping
     @ApiOperation(value = "Return all campaings in data base")
     @ResponseStatus(HttpStatus.OK)
@@ -82,7 +104,6 @@ public class CampaignsController {
 
         for(Campaign campaign : campaignList) {
             CampaignVM campaignAux = CampaignVMAdapter.entityToViewModel(campaign);
-            //Vaccinas
             List<VaccineCampaignModel> vaccineCampaignModelList = getVaccineByCampaignInDataBase.execute(campaign.getId());
             List<VaccineVM> vaccineVMList = new ArrayList<>();
 
@@ -91,7 +112,6 @@ public class CampaignsController {
                 campaignAux.setNumberVaccines(vaccineCampaignModel.getNumberVaccines());
             }
             campaignAux.setVaccineList(vaccineVMList);
-            //Fim da vacinas
             List<UserVaccineCampaignModel> userVaccineCampaignModelList = getUserByCampaignInDataBase.execute(campaign.getId());
             campaignAux.setAdhered(userVaccineCampaignModelList.size());
 

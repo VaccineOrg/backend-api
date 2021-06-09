@@ -15,5 +15,4 @@ public class ValidateCreateVaccine {
         if(getVaccineByName.execute(vaccine.getName()) == null) return true;
         throw new NoSuchFieldError("Já existe vacina com este nome cadastrado");
     }
-
 }

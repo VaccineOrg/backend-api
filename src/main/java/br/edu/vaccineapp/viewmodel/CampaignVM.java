@@ -13,6 +13,7 @@ public class CampaignVM {
     private Long numberVaccines;
     private String dateBegin;
     private String dateEnd;
+    private int adhered;
 
 
     public Long getId() {
@@ -69,5 +70,13 @@ public class CampaignVM {
 
     public void setVaccineList(List<VaccineVM> vaccineList) {
         this.vaccineList = vaccineList;
+    }
+
+    public int getAdhered() {
+        return adhered;
+    }
+
+    public void setAdhered(int adhered) {
+        this.adhered = adhered;
     }
 }

@@ -31,7 +31,7 @@ public class UserVaccineCampaignController {
     @Autowired
     private CreateUserVaccineCampaign createUserVaccineCampaign;
 
-    @PostMapping("/accenssion/{idCampaign}")
+    @PostMapping("/accession/{idCampaign}")
     @ApiOperation(value = "Create de accession in database")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity campaignAccession(@PathVariable Long idCampaign, @RequestBody UserVaccinCampaignVM userVaccinCampaignVM) {

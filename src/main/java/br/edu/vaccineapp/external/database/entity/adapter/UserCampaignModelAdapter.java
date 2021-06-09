@@ -5,7 +5,7 @@ import br.edu.vaccineapp.external.database.entity.UserVaccineCampaignModel;
 
 import java.util.Date;
 
-public class UserVaccineCampaignModelAdapter {
+public class UserCampaignModelAdapter {
 
     public static UserCampaign modelToEntity (final UserVaccineCampaignModel model) {
         final UserCampaign entity = new UserCampaign();

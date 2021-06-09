@@ -6,7 +6,6 @@ import br.edu.vaccineapp.external.database.entity.UserModel;
 import br.edu.vaccineapp.external.database.entity.UserVaccineCampaignModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class UserModelAdapter {
 
         if(userVaccineCampaignModelList != null) {
             for (UserVaccineCampaignModel item : userVaccineCampaignModelList) {
-                userCampaignList.add(UserVaccineCampaignModelAdapter.modelToEntity(item));
+                userCampaignList.add(UserCampaignModelAdapter.modelToEntity(item));
             }
             entity.setUserCampaigns(userCampaignList);
         }
@@ -50,7 +49,7 @@ public class UserModelAdapter {
 
         if(userCampaignList != null) {
             for(UserCampaign item : userCampaignList) {
-                userVaccineCampaignModelList.add(UserVaccineCampaignModelAdapter.entityToModel(item));
+                userVaccineCampaignModelList.add(UserCampaignModelAdapter.entityToModel(item));
             }
             model.setUserCampaigns(userVaccineCampaignModelList);
         }

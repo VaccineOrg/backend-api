@@ -13,7 +13,7 @@ INSERT INTO VACCINEORG.users values (
 );
 
 INSERT INTO VACCINEORG.users values (
-    VACCINEORG.users_seq.NEXTVAL, 'Gustavo', '10-079d0755-752a-457f-8dda-4bbc222320cf', to_date('19/05/2021','DD/MM/YYYY'), 'gabriel@gmail.com', '1234'
+    VACCINEORG.users_seq.NEXTVAL, 'Gustavo', '10-079d0755-752a-457f-8dda-4bbc222320cf', to_date('19/05/2021','DD/MM/YYYY'), 'gustavo@gmail.com', '1234'
 );
 
 ----- -> Vaccine

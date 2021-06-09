@@ -32,7 +32,7 @@ public class UserVaccineCampaignController {
     private CreateUserVaccineCampaign createUserVaccineCampaign;
 
     @PostMapping("/accenssion/{idCampaign}")
-    @ApiOperation(value = "Create de accenssion in database")
+    @ApiOperation(value = "Create de accession in database")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity campaignAccession(@PathVariable Long idCampaign, @RequestBody UserVaccinCampaignVM userVaccinCampaignVM) {
         User user = getUserByIdInDataBase.execute(userVaccinCampaignVM.getIdUser());

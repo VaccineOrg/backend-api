@@ -74,7 +74,7 @@ public class CampaignsController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Return all campaings in data base")
+    @ApiOperation(value = "Return campaing in data base")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<CampaignVM> getCampaigns(@PathVariable Long id) throws ParseException {
         Campaign campaign = getCampaignByIdInDataBase.execute(id);

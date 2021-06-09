@@ -2,7 +2,10 @@ package br.edu.vaccineapp.endpoint.rest;
 
 import br.edu.vaccineapp.entity.Campaign;
 import br.edu.vaccineapp.external.GetCampaignByIdInDataBase;
+import br.edu.vaccineapp.external.database.GetUserByCampaignInDataBaseImpl;
 import br.edu.vaccineapp.external.database.GetVaccineByCampaignInDataBaseImpl;
+import br.edu.vaccineapp.external.database.entity.UserModel;
+import br.edu.vaccineapp.external.database.entity.UserVaccineCampaignModel;
 import br.edu.vaccineapp.external.database.entity.VaccineCampaignModel;
 import br.edu.vaccineapp.external.database.entity.adapter.VaccineModelAdapter;
 import br.edu.vaccineapp.usecase.creation.CreateCampaign;
@@ -54,6 +57,9 @@ public class CampaignsController {
     @Autowired
     private UpdateCampaignStatus updateCampaignStatus;
 
+    @Autowired
+    private GetUserByCampaignInDataBaseImpl getUserByCampaignInDataBase;
+
 
     @PostMapping
     @ApiOperation(value = "Create campaign in data base")
@@ -75,7 +81,8 @@ public class CampaignsController {
         final List<CampaignVM> campaignVMList = new ArrayList<>();
 
         for(Campaign campaign : campaignList) {
-            CampaignVM campaignAux =  CampaignVMAdapter.entityToViewModel(campaign);
+            CampaignVM campaignAux = CampaignVMAdapter.entityToViewModel(campaign);
+            //Vaccinas
             List<VaccineCampaignModel> vaccineCampaignModelList = getVaccineByCampaignInDataBase.execute(campaign.getId());
             List<VaccineVM> vaccineVMList = new ArrayList<>();
 
@@ -84,6 +91,10 @@ public class CampaignsController {
                 campaignAux.setNumberVaccines(vaccineCampaignModel.getNumberVaccines());
             }
             campaignAux.setVaccineList(vaccineVMList);
+            //Fim da vacinas
+            List<UserVaccineCampaignModel> userVaccineCampaignModelList = getUserByCampaignInDataBase.execute(campaign.getId());
+            campaignAux.setAdhered(userVaccineCampaignModelList.size());
+
             campaignVMList.add(campaignAux);
         }
 

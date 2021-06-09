@@ -1,7 +1,7 @@
 <h1 align="center">VACCINEAPP - API</h1>
-<p align="center">💉 API for vaccine services, Adroid App and Web</p>
+<p align="center">💉 API for vaccine services, Android App and Web</p>
 
-<h4>STATUS: Beta 1.0.0.0 Concluido :heavy_check_mark: </h4>
+<h4>STATUS: Beta 1.0.0.0 Ready :heavy_check_mark: </h4>
 
 ## Instalation
 ### Prerequisite

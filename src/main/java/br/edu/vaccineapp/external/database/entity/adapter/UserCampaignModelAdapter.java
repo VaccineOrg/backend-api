@@ -1,17 +1,14 @@
 package br.edu.vaccineapp.external.database.entity.adapter;
 
-import br.edu.vaccineapp.entity.UserVaccineCampaign;
+import br.edu.vaccineapp.entity.UserCampaign;
 import br.edu.vaccineapp.external.database.entity.UserVaccineCampaignModel;
 
 import java.util.Date;
 
-public class UserVaccineCampaignModelAdapter {
+public class UserCampaignModelAdapter {
 
-    public static UserVaccineCampaign modelToEntity (final UserVaccineCampaignModel model) {
-        UserVaccineCampaign entity = new UserVaccineCampaign();
-
-        entity.setId(model.getId());
-        entity.setUser(UserModelAdapter.modelToEntity(model.getUser()));
+    public static UserCampaign modelToEntity (final UserVaccineCampaignModel model) {
+        final UserCampaign entity = new UserCampaign();
         entity.setCampaign(CampaignModelAdapter.modelToEntity(model.getCampaign()));
         entity.setVaccine(VaccineModelAdapter.modelToEntity(model.getVaccine()));
         entity.setDateCreate(model.getDateCreate());
@@ -19,11 +16,8 @@ public class UserVaccineCampaignModelAdapter {
         return entity;
     }
 
-    public static UserVaccineCampaignModel entityToModel (final UserVaccineCampaign entity) {
-        UserVaccineCampaignModel model = new UserVaccineCampaignModel();
-
-        model.setId(entity.getId());
-        model.setUser(UserModelAdapter.entityToModel(entity.getUser()));
+    public static UserVaccineCampaignModel entityToModel (final UserCampaign entity) {
+        final UserVaccineCampaignModel model = new UserVaccineCampaignModel();
         model.setCampaign(CampaignModelAdapter.entityToModel(entity.getCampaign()));
         model.setVaccine(VaccineModelAdapter.entityToModel(entity.getVaccine()));
         model.setDateCreate(new Date());
